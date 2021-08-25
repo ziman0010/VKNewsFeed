@@ -14,6 +14,8 @@
 		9D97AA6E26CFBA5400A3F6EE /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D97AA6D26CFBA5400A3F6EE /* AuthViewController.swift */; };
 		9D97AA7326CFBA5400A3F6EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D97AA7226CFBA5400A3F6EE /* Assets.xcassets */; };
 		9D97AA7626CFBA5400A3F6EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D97AA7426CFBA5400A3F6EE /* LaunchScreen.storyboard */; };
+		9D9A42ED26D50B80000BBCA2 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9A42EC26D50B80000BBCA2 /* NetworkService.swift */; };
+		9D9A42EF26D50C3B000BBCA2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D9A42EE26D50C3B000BBCA2 /* API.swift */; };
 		9DDF31F526D03C6C002C1347 /* VKSdkFramework.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDF31F426D03C6C002C1347 /* VKSdkFramework.xcframework */; };
 		9DDF31F626D03C6C002C1347 /* VKSdkFramework.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9DDF31F426D03C6C002C1347 /* VKSdkFramework.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9DDF31F926D0404E002C1347 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DDF31F826D0404E002C1347 /* AuthService.swift */; };
@@ -45,6 +47,8 @@
 		9D97AA7526CFBA5400A3F6EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D97AA7726CFBA5400A3F6EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D97AA7F26CFD68F00A3F6EE /* VKSdkFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VKSdkFramework.framework; path = Carthage/Build/iOS/VKSdkFramework.framework; sourceTree = "<group>"; };
+		9D9A42EC26D50B80000BBCA2 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		9D9A42EE26D50C3B000BBCA2 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		9DDF31F426D03C6C002C1347 /* VKSdkFramework.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = VKSdkFramework.xcframework; path = Carthage/Build/VKSdkFramework.xcframework; sourceTree = "<group>"; };
 		9DDF31F826D0404E002C1347 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		9DDF31FB26D042C0002C1347 /* AuthViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthViewController.storyboard; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 			isa = PBXGroup;
 			children = (
 				9DDF31F826D0404E002C1347 /* AuthService.swift */,
+				9D9A42EC26D50B80000BBCA2 /* NetworkService.swift */,
+				9D9A42EE26D50C3B000BBCA2 /* API.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -227,7 +233,9 @@
 				9D97AA6A26CFBA5400A3F6EE /* AppDelegate.swift in Sources */,
 				9D2D120226D3B1A900423F1E /* FeedViewController.swift in Sources */,
 				9D97AA6C26CFBA5400A3F6EE /* SceneDelegate.swift in Sources */,
+				9D9A42ED26D50B80000BBCA2 /* NetworkService.swift in Sources */,
 				9DDF31F926D0404E002C1347 /* AuthService.swift in Sources */,
+				9D9A42EF26D50C3B000BBCA2 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
