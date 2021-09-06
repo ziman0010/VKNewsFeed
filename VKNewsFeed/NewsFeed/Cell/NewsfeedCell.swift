@@ -52,6 +52,7 @@ class NewsfeedCell: UITableViewCell {
         iconImageView.set(imageUrl: nil)
         postImageView.set(imageUrl: nil)
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         iconImageView.layer.cornerRadius = iconImageView.frame.width / 2
