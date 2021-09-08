@@ -7,9 +7,14 @@
 
 import UIKit
 
-class NewsfeedCodeCell: UITableViewCell {
+protocol NewsfeedCodeCellDelegate: AnyObject {
+    func revealPost(for cell: NewsfeedCodeCell)
+}
+final class NewsfeedCodeCell: UITableViewCell {
     
     static let reuseId = "NewsfeedCodeCell"
+    
+    weak var delegate: NewsfeedCodeCellDelegate?
     //first layer
     let cardView: UIView = {
         let view = UIView()
@@ -43,6 +48,17 @@ class NewsfeedCodeCell: UITableViewCell {
         let view = UIView()
         // view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }()
+        
+    let moreTextButton: UIButton = {
+        let button = UIButton()
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .medium)
+        button.setTitleColor(#colorLiteral(red: 0.4, green: 0.6235294118, blue: 0.831372549, alpha: 1), for: .normal)
+        button.contentHorizontalAlignment = .left
+        button.contentVerticalAlignment = .center
+        button.setTitle("Показать полность...", for: .normal)
+        button.isUserInteractionEnabled = true
+        return button
     }()
     
     //third layer on the top view
@@ -178,6 +194,7 @@ class NewsfeedCodeCell: UITableViewCell {
         cardView.layer.cornerRadius = 10
         cardView.clipsToBounds = true
         
+        moreTextButton.addTarget(self, action: #selector(moreTextButtonTouch), for: .touchUpInside)
         
         overlayFirstLayer()
         overlaySecondLayer()
@@ -189,6 +206,9 @@ class NewsfeedCodeCell: UITableViewCell {
         
     }
     
+    @objc func moreTextButtonTouch() {
+        delegate?.revealPost(for: self)
+    }
     private func helpInFourthLayer(view: UIView, imageView: UIImageView, label: UILabel) {
         
         //imageView constraints
@@ -289,6 +309,8 @@ class NewsfeedCodeCell: UITableViewCell {
     private func overlaySecondLayer() {
         cardView.addSubview(topView)
         cardView.addSubview(postLabel)
+        contentView.addSubview(moreTextButton)
+        //cardView.addSubview(moreTextButton) почему то не работает
         cardView.addSubview(postImageView)
         cardView.addSubview(bottomView)
         
@@ -302,7 +324,6 @@ class NewsfeedCodeCell: UITableViewCell {
                                              bottom: 777,
                                              right: 8))
         topView.heightAnchor.constraint(equalToConstant: Constants.topViewHeight).isActive = true
-        
         
         
     }
@@ -331,6 +352,7 @@ class NewsfeedCodeCell: UITableViewCell {
         postLabel.frame = viewModel.sizes.postLabelFrame
         postImageView.frame = viewModel.sizes.attachmentFrame
         bottomView.frame = viewModel.sizes.bottomViewFrame
+        moreTextButton.frame = viewModel.sizes.moreTextButtonFrame
         
         if let photoAttachment = viewModel.photoAttachment {
             postImageView.set(imageUrl: photoAttachment.photoUrlString)
