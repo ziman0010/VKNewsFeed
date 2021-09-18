@@ -38,6 +38,7 @@ final class NewsfeedCodeCell: UITableViewCell {
         return label
     }()
     
+    let galleryCollectionView = GalleryCollectionView()
     let postImageView: WebImageView = {
         let imageView = WebImageView()
         
@@ -57,7 +58,6 @@ final class NewsfeedCodeCell: UITableViewCell {
         button.contentHorizontalAlignment = .left
         button.contentVerticalAlignment = .center
         button.setTitle("Показать полность...", for: .normal)
-        button.isUserInteractionEnabled = true
         return button
     }()
     
@@ -196,15 +196,20 @@ final class NewsfeedCodeCell: UITableViewCell {
         
         moreTextButton.addTarget(self, action: #selector(moreTextButtonTouch), for: .touchUpInside)
         
+        
         overlayFirstLayer()
         overlaySecondLayer()
         overlayThirdLayerOnTheTopView()
         overlayThirdLayerOnTheBottomView()
         overlayFourthLayerOnTheBottomView()
         
+        cardView.isUserInteractionEnabled = true
+        
         
         
     }
+    
+    
     
     @objc func moreTextButtonTouch() {
         delegate?.revealPost(for: self)
@@ -308,10 +313,12 @@ final class NewsfeedCodeCell: UITableViewCell {
     }
     private func overlaySecondLayer() {
         cardView.addSubview(topView)
+        
         cardView.addSubview(postLabel)
-        contentView.addSubview(moreTextButton)
-        //cardView.addSubview(moreTextButton) почему то не работает
+        cardView.addSubview(moreTextButton)
         cardView.addSubview(postImageView)
+        cardView.addSubview(galleryCollectionView)
+        
         cardView.addSubview(bottomView)
         
         //topView constraints
@@ -329,11 +336,11 @@ final class NewsfeedCodeCell: UITableViewCell {
     }
     
     private func overlayFirstLayer() {
-        addSubview(cardView)
+        contentView.addSubview(cardView)
         
         //cardView constraints
-        //cardView.fillSuperview(padding: Constants.cardInsets)
-        cardView.anchor(top: topAnchor, leading: leadingAnchor, bottom: bottomAnchor, trailing: trailingAnchor, padding: Constants.cardInsets)
+        cardView.fillSuperview(padding: Constants.cardInsets)
+       
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -350,17 +357,27 @@ final class NewsfeedCodeCell: UITableViewCell {
         iconImageView.set(imageUrl: viewModel.iconURLString)
         
         postLabel.frame = viewModel.sizes.postLabelFrame
-        postImageView.frame = viewModel.sizes.attachmentFrame
         bottomView.frame = viewModel.sizes.bottomViewFrame
         moreTextButton.frame = viewModel.sizes.moreTextButtonFrame
-        
-        if let photoAttachment = viewModel.photoAttachment {
+      
+        if let photoAttachment = viewModel.photoAttachments.first, viewModel.photoAttachments.count == 1
+        {
             postImageView.set(imageUrl: photoAttachment.photoUrlString)
             postImageView.isHidden = false
+            galleryCollectionView.isHidden = true
+            postImageView.frame = viewModel.sizes.attachmentFrame
+        }
+        else if viewModel.photoAttachments.count > 1
+        {
+            galleryCollectionView.set(photos: viewModel.photoAttachments)
+            galleryCollectionView.frame = viewModel.sizes.attachmentFrame
+            postImageView.isHidden = true
+            galleryCollectionView.isHidden = false
         }
         else
         {
             postImageView.isHidden = true
+            galleryCollectionView.isHidden = true
         }
     }
 }

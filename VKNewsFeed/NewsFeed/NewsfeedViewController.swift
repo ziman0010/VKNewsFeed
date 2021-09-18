@@ -81,8 +81,9 @@ extension NewsfeedViewController: UITableViewDelegate, UITableViewDataSource {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: NewsfeedCell.reuseID, for: indexPath) as! NewsfeedCell
         let cellViewModel = feedViewModel.cells[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "NewsfeedCodeCell") as! NewsfeedCodeCell
-        cell.set(viewModel: cellViewModel)
+        
         cell.delegate = self
+        cell.set(viewModel: cellViewModel)
         return cell
     }
     
