@@ -40,6 +40,7 @@
 		9DDF31FC26D042C0002C1347 /* AuthViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DDF31FB26D042C0002C1347 /* AuthViewController.storyboard */; };
 		9DF6D95626F5EFCC00A15B28 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF6D95526F5EFCC00A15B28 /* TitleView.swift */; };
 		9DF6D95826F5F09C00A15B28 /* InsetableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF6D95726F5F09C00A15B28 /* InsetableTextField.swift */; };
+		9DF6D95A26F6121A00A15B28 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF6D95926F6121A00A15B28 /* UserResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -92,6 +93,7 @@
 		9DDF31FB26D042C0002C1347 /* AuthViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AuthViewController.storyboard; sourceTree = "<group>"; };
 		9DF6D95526F5EFCC00A15B28 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		9DF6D95726F5F09C00A15B28 /* InsetableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetableTextField.swift; sourceTree = "<group>"; };
+		9DF6D95926F6121A00A15B28 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				9D38AC1726D787D600C10CBF /* FeedResponse.swift */,
+				9DF6D95926F6121A00A15B28 /* UserResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				9DF6D95626F5EFCC00A15B28 /* TitleView.swift in Sources */,
 				9D1A6B6926E3A5430027A1A0 /* extension UIView.swift in Sources */,
 				9D420EE526E272CF00CBDE7D /* NewsfeedCodeCell.swift in Sources */,
+				9DF6D95A26F6121A00A15B28 /* UserResponse.swift in Sources */,
 				9D24EF0326DF6ADC000C9AE4 /* WebImageView.swift in Sources */,
 				9D38AC1A26D78A9F00C10CBF /* NetworkDataFetcher.swift in Sources */,
 				9D7C673826D7C65400325E7C /* NewsfeedWorker.swift in Sources */,
