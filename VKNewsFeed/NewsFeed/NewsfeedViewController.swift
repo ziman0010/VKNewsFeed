@@ -74,6 +74,13 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
         }
     }
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView.contentOffset.y > scrollView.contentSize.height / 2
+        {
+            print(1,2,3)
+        }
+    }
+    
 }
 extension NewsfeedViewController: NewsfeedCodeCellDelegate {
     func revealPost(for cell: NewsfeedCodeCell) {

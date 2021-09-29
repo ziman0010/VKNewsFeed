@@ -15,6 +15,10 @@ final class NetworkService: Networking {
     init() {
         self.authService = SceneDelegate.shared().authService
     }
+    
+    init(authService: AuthService) {
+        self.authService = authService
+    }
     private let authService: AuthService
     
     private func url(from path: String, params: [String : String]) -> URL {

@@ -9,44 +9,32 @@
 import UIKit
 
 protocol NewsfeedBusinessLogic {
-  func makeRequest(request: Newsfeed.Model.Request.RequestType)
+    func makeRequest(request: Newsfeed.Model.Request.RequestType)
 }
 
 class NewsfeedInteractor: NewsfeedBusinessLogic {
-
-  var presenter: NewsfeedPresentationLogic?
-  var service: NewsfeedService?
     
-    private var feedResponse: FeedResponse?
-    private var revealPostIds = [Int]()
-  
-    private var fetcher: DataFetcher = NetworkDataFetcher(networking: NetworkService())
-  func makeRequest(request: Newsfeed.Model.Request.RequestType) {
-    if service == nil {
-      service = NewsfeedService()
-    }
-    switch request {
-    case .getNewsFeed:
-        fetcher.getFeed { [weak self] feedResponse in
-            self?.feedResponse = feedResponse
-            self?.presentFeed()
+    var presenter: NewsfeedPresentationLogic?
+    var service: NewsfeedService?
+    
+    func makeRequest(request: Newsfeed.Model.Request.RequestType) {
+        if service == nil {
+            service = NewsfeedService()
         }
         
-    case .revealPost(postId: let postId):
-        revealPostIds.append(postId)
-        presentFeed()
-    case .getUser:
-        fetcher.getUser { userResponse in
-            self.presenter?.presentData(response: .presentUserInfo(response: userResponse))
+        switch request {
+        case .getNewsFeed:
+            service?.getFeed(completion: { [weak self] feed, revealPostIds in
+                self?.presenter?.presentData(response: .presentNewsFeed(feed: feed, revealedPostIds: revealPostIds))
+            })
+        case .getUser:
+            service?.getUser(completion: { [weak self]  userResponse in
+                self?.presenter?.presentData(response: .presentUserInfo(response: userResponse))
+            })
+        case .revealPost(postId: let postId):
+            service?.revealPostIds(forPostId: postId, completion: { [weak self] feedResponse, revealPostIds in
+                self?.presenter?.presentData(response: .presentNewsFeed(feed: feedResponse, revealedPostIds: revealPostIds))
+            })
         }
     }
-  }
-    
-    private func presentFeed() {
-        guard let feedResponse = feedResponse else {
-            return
-        }
-        presenter?.presentData(response: .presentNewsFeed(feed: feedResponse, revealedPostIds: revealPostIds))
-    }
-  
 }
