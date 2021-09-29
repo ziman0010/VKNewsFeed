@@ -21,6 +21,11 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
     @IBOutlet weak var table: UITableView!
     
     private var titleView = TitleView()
+    private var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        return refreshControl
+    }()
     // MARK: Setup
     
     private func setup() {
@@ -44,31 +49,44 @@ class NewsfeedViewController: UIViewController, NewsfeedDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        setupTable()
         setupTopBars()
         
-        // table.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseID)
-        
-        table.register(NewsfeedCodeCell.self, forCellReuseIdentifier: "NewsfeedCodeCell")
-        table.separatorStyle = .none
-        table.backgroundColor = .clear
         view.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
-        
         interactor?.makeRequest(request: .getNewsFeed)
         interactor?.makeRequest(request: .getUser)
     }
     
+    private func setupTable()
+    {
+        let topInset: CGFloat = 8
+        table.contentInset.top = topInset
+        table.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: NewsfeedCell.reuseID)
+        
+        table.register(NewsfeedCodeCell.self, forCellReuseIdentifier: "NewsfeedCodeCell")
+        
+        table.separatorStyle = .none
+        table.backgroundColor = .clear
+        table.addSubview(refreshControl)
+    }
+    
     private func setupTopBars() {
-        self.navigationController?.hidesBarsOnSwipe = true
+        self.navigationController?.hidesBarsOnSwipe = false
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationItem.titleView = titleView
     }
     
+    @objc private func refresh()
+    {
+        interactor?.makeRequest(request: .getNewsFeed)
+    }
     func displayData(viewModel: Newsfeed.Model.ViewModel.ViewModelData) {
         
         switch viewModel {
         case .displayNewsfeed(feedViewModel: let feedViewModel):
             self.feedViewModel = feedViewModel
             table.reloadData()
+            refreshControl.endRefreshing()
         case .displayUser(userViewModel: let userViewModel):
             titleView.set(userViewModel: userViewModel)
         }

@@ -30,12 +30,26 @@ final class NewsfeedCodeCell: UITableViewCell {
         return view
     }()
     
-    let postLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = Constants.postLabelFont
+//    let postLabel: UILabel = {
+//        let label = UILabel()
+//        label.numberOfLines = 0
+//        label.font = Constants.postLabelFont
+//
+//        return label
+//    }()
+    
+    let postLabel: UITextView = {
+        let textView = UITextView()
+        textView.font = Constants.postLabelFont
+        textView.isScrollEnabled = false
+        textView.isSelectable = true
+        textView.isUserInteractionEnabled = true
+        textView.isEditable = false
         
-        return label
+        let padding = textView.textContainer.lineFragmentPadding
+        textView.textContainerInset = UIEdgeInsets.init(top: 0, left: -padding, bottom: 0, right: -padding)
+        textView.dataDetectorTypes = UIDataDetectorTypes.all
+        return textView
     }()
     
     let galleryCollectionView = GalleryCollectionView()
