@@ -36,6 +36,7 @@ class NewsfeedInteractor: NewsfeedBusinessLogic {
                 self?.presenter?.presentData(response: .presentNewsFeed(feed: feedResponse, revealedPostIds: revealPostIds))
             })
         case .getNextBatch:
+            self.presenter?.presentData(response: .presentFooterLoader)
             service?.getNextBatch(completion: { revealedPostIds, feedResponse in
                 self.presenter?.presentData(response: .presentNewsFeed(feed: feedResponse, revealedPostIds: revealedPostIds))
             })
