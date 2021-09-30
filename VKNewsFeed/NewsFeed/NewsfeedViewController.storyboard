@@ -16,6 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pvG-HP-Ft1" customClass="GradientView" customModule="VKNewsFeed" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hdk-DG-XpX">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -26,12 +30,16 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="top" secondItem="hdk-DG-XpX" secondAttribute="top" constant="44" id="3yT-pi-F8s"/>
+                            <constraint firstItem="pvG-HP-Ft1" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Id9-rk-TXX"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hdk-DG-XpX" secondAttribute="trailing" id="JgQ-p5-IMg"/>
                             <constraint firstItem="hdk-DG-XpX" firstAttribute="bottom" secondItem="vDu-zF-Fre" secondAttribute="bottom" constant="34" id="Pq5-cy-Zj8"/>
                             <constraint firstItem="hdk-DG-XpX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="XBc-cm-kns"/>
+                            <constraint firstItem="pvG-HP-Ft1" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="XJ2-l5-RqN"/>
+                            <constraint firstItem="pvG-HP-Ft1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="q1T-6i-dKY"/>
+                            <constraint firstAttribute="bottom" secondItem="pvG-HP-Ft1" secondAttribute="bottom" id="saf-U8-uvX"/>
                         </constraints>
                     </view>
                     <connections>
